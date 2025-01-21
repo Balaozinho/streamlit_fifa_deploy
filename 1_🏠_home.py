@@ -16,9 +16,7 @@ st.markdown("#FIFA23 OFFICIAL DATASET! ⚽")
 st.sidebar.markdown("Desenvolvido por [Grupo Gali](https://galileunegocios.com.br/)")
 
 
-btn = st.button("Acesse os dados do Kaggle") #quando clicamos nele, o estado dele altera para True
-if btn:
-    webbrowser.open_new_tab("https://www.kaggle.com/datasets/bryanb/fifa-player-stats-database")
+btn = st.link_button("Acesse os dados do Kaggle", "https://www.kaggle.com/datasets/bryanb/fifa-player-stats-database" ) 
 
 st.markdown("""
             The dataset contains +17k unique players and more than 60 columns, general information 
