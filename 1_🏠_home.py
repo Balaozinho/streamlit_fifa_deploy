@@ -1,15 +1,16 @@
 import streamlit as st
-import webbrowser
 import pandas as pd
 from datetime import datetime
 
 #tecnica de carregamento do state e distribuicao disso nas outras paginas (cacheamento)
+#Um recurso do Streamlit que permite armazenar e compartilhar dados entre interações dentro do aplicativo. 
+# Funciona como uma memória persistente enquanto a aplicação está em execução.
 if "data" not in st.session_state:
     df_data = pd.read_csv("datasets/CLEAN_FIFA23_official_data.csv", index_col=0)
-    df_data = df_data[df_data["Contract Valid Until"] >= datetime.today().year]
-    df_data = df_data[df_data["Value(£)"] > 0]
-    df_data = df_data.sort_values(by="Overall", ascending=False)
-    st.session_state["data"] = df_data
+    df_data = df_data[df_data["Contract Valid Until"] >= datetime.today().year] #filtro de contrato válido
+    df_data = df_data[df_data["Value(£)"] > 0] #filtro de valor de mercado
+    df_data = df_data.sort_values(by="Overall", ascending=False) #ordena dataframe com base na coluna Overall de forma decrescente (melhor para pior)
+    st.session_state["data"] = df_data #Armazena dataframe filtrado e processado na chave data
 
 
 st.markdown("#FIFA23 OFFICIAL DATASET! ⚽")

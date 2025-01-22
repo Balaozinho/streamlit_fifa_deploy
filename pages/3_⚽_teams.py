@@ -6,12 +6,13 @@ st.set_page_config(
     layout="wide"
 )
 
-df_data = st.session_state["data"]
+df_data = st.session_state["data"] #carrega as informações do session state
 
-clubes = df_data["Club"].value_counts().index
-club = st.sidebar.selectbox("Clube", clubes)
+clubes = df_data["Club"].value_counts().index #carrega clubes únicos no dataframe
+club = st.sidebar.selectbox("Clube", clubes) #menu suspenso onde o label é Clube e a lista de clubes é *clubes*
 
-df_filtered = df_data[(df_data["Club"] == club)].set_index("Name")
+#filtrando o dataframe e ajustando o índice de número para name
+df_filtered = df_data[(df_data["Club"] == club)].set_index("Name")  #"set_index": Substitui o índice padrão do Pandas (numérico, baseado na posição das linhas) pela coluna "Name"
 
 st.image(df_filtered.iloc[0]["Club Logo"])
 st.markdown(f"## {club}")
